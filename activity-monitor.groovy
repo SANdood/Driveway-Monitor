@@ -20,8 +20,9 @@
  * 1.0.4	11/14/2018	Now supports Echo Speaks; more "who departed" deduction logic
  * 1.1.0	12/04/2018	Added Walkway and Mailbox monitors
  * 1.1.1	12/14/2018	Added separate Pushover sounds for driveway, walkway and mailbox
+ * 1.1.2	12/15/2018	Fixed isNumber() bug
  */
-def getVersionNum() { return "1.1.1" }
+def getVersionNum() { return "1.1.2" }
 private def getVersionLabel() { return "${app.name} (${app.label}), v${getVersionNum()}" }
  
 definition(
