@@ -21,8 +21,9 @@
  * 1.1.0	12/04/2018	Added Walkway and Mailbox monitors
  * 1.1.1	12/14/2018	Added separate Pushover sounds for driveway, walkway and mailbox
  * 1.1.2	12/15/2018	Fixed isNumber() bug
+ * 1.1.3	12/16/2018	Fix another isNumber() bug
  */
-def getVersionNum() { return "1.1.2" }
+def getVersionNum() { return "1.1.3" }
 private def getVersionLabel() { return "${app.name} (${app.label}), v${getVersionNum()}" }
  
 definition(
@@ -528,7 +529,7 @@ def walkEntryHandler(evt) {
     if (atomicState.pauseDetection) { log.warn "Walkway detection has been paused"; return }
     
     // Handle the delayed departure message, if any
-    if (atomicState.departureMessage != "" && (atomicState.departureTime?.isNumber && ((now() - atomicState.departureTime) < 300000))) {
+    if (atomicState.departureMessage != "" && (atomicState.departureTime?.isNumber() && ((now() - atomicState.departureTime) < 300000))) {
     	sendMessage(atomicState.departureMessage, settings.walkSound)
         atomicState.departureMessage = ""
         atomicState.departureTime = null
